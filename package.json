@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "ROLLDOWN_NUM_THREADS=1 vite build",
+    "build": "RAYON_NUM_THREADS=1 ROLLDOWN_NUM_THREADS=1 vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
