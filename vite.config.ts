@@ -12,4 +12,14 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    build: {
+      // Limit parallel file operations to work around a rolldown WASM atomics
+      // threading bug (RangeError: Invalid atomic access index) in certain
+      // deployment environments.
+      rollupOptions: {
+        maxParallelFileOps: 1,
+      },
+    },
+  },
 });
