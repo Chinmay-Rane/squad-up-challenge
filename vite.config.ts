@@ -6,6 +6,12 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Force rolldown to use a single worker thread to avoid a WASM atomics bug
+// (RangeError: Invalid atomic access index) in rolldown 1.0.x. This is set at
+// module-load time so it applies even when the platform invokes `vite build`
+// directly rather than through the npm build script.
+process.env.ROLLDOWN_NUM_THREADS = "1";
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
@@ -14,9 +20,6 @@ export default defineConfig({
   },
   vite: {
     build: {
-      // Limit parallel file operations to work around a rolldown WASM atomics
-      // threading bug (RangeError: Invalid atomic access index) in certain
-      // deployment environments.
       rollupOptions: {
         maxParallelFileOps: 1,
       },
