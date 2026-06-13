@@ -14,7 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      aimlabs_scores: {
+        Row: {
+          created_at: string
+          id: string
+          player_name: string
+          score: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          player_name: string
+          score: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          player_name?: string
+          score?: number
+        }
+        Relationships: []
+      }
+      audios: {
+        Row: {
+          answer: string
+          created_at: string
+          hint: string | null
+          id: string
+          level: Database["public"]["Enums"]["quiz_level"]
+          storage_path: string
+        }
+        Insert: {
+          answer: string
+          created_at?: string
+          hint?: string | null
+          id?: string
+          level: Database["public"]["Enums"]["quiz_level"]
+          storage_path: string
+        }
+        Update: {
+          answer?: string
+          created_at?: string
+          hint?: string | null
+          id?: string
+          level?: Database["public"]["Enums"]["quiz_level"]
+          storage_path?: string
+        }
+        Relationships: []
+      }
+      quiz_scores: {
+        Row: {
+          created_at: string
+          id: string
+          player_name: string
+          score: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          player_name: string
+          score: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          player_name?: string
+          score?: number
+        }
+        Relationships: []
+      }
+      racing_times: {
+        Row: {
+          created_at: string
+          id: string
+          lap_time_ms: number
+          player_name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          lap_time_ms: number
+          player_name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          lap_time_ms?: number
+          player_name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +112,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      quiz_level: "easy" | "medium" | "hard" | "very_hard" | "impossible"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +239,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      quiz_level: ["easy", "medium", "hard", "very_hard", "impossible"],
+    },
   },
 } as const
