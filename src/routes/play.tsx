@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Play, RotateCcw, Check, X, Lightbulb, Loader2 } from "lucide-react";
+import { Play as PlayIcon, RotateCcw, Check, X, Lightbulb, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/play")({
@@ -172,7 +172,7 @@ function Play() {
                 <RotateCcw className="size-4" /> Replay
               </Button>
               <Button onClick={replay} className="flex-1" size="lg">
-                <Play className="size-4" /> Play
+                <PlayIcon className="size-4" /> Play
               </Button>
             </div>
 
